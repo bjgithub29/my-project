@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookingPro - Enterprise Appointment Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-text {
+            background: linear-gradient(120deg, #4f46e5 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navbar -->
+    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold text-gray-900">BookingPro</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="#features" class="text-gray-600 hover:text-gray-900 transition font-medium">Features</a>
+                    <a href="#benefits" class="text-gray-600 hover:text-gray-900 transition font-medium">Benefits</a>
+                    <a href="#pricing" class="text-gray-600 hover:text-gray-900 transition font-medium">Pricing</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/auth/login" class="text-gray-700 hover:text-gray-900 font-medium transition px-4 py-2">Sign In</a>
+                    <a href="/auth/register" class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-xl hover:shadow-lg hover:scale-105 transition font-medium">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="text-center md:text-left">
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                        Streamline Your
+                        <span class="gradient-text block mt-2">Booking Process</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        A professional booking system designed to help you manage appointments effortlessly. Save time, reduce no-shows, and grow your business.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="/auth/register" class="gradient-bg text-white px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition shadow-lg">
+                            Start Free Trial
+                        </a>
+                        <a href="#features" class="bg-white border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold text-lg hover:border-indigo-600 hover:text-indigo-600 transition">
+                            Learn More
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center justify-center md:justify-start space-x-6 text-sm text-gray-600">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            No credit card required
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Setup in 2 minutes
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Content - Stats/Visual -->
+                <div class="hidden md:block">
+                    <div class="gradient-bg rounded-2xl p-8 shadow-2xl">
+                        <div class="bg-white rounded-xl p-6 mb-4">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Quick Stats</h3>
+                                <span class="text-2xl">📊</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center p-4 bg-indigo-50 rounded-lg">
+                                    <div class="text-3xl font-bold text-indigo-600">24/7</div>
+                                    <div class="text-sm text-gray-600 mt-1">Availability</div>
+                                </div>
+                                <div class="text-center p-4 bg-purple-50 rounded-lg">
+                                    <div class="text-3xl font-bold text-purple-600">100%</div>
+                                    <div class="text-sm text-gray-600 mt-1">Secure</div>
+                                </div>
+                                <div class="text-center p-4 bg-pink-50 rounded-lg">
+                                    <div class="text-3xl font-bold text-pink-600">Fast</div>
+                                    <div class="text-sm text-gray-600 mt-1">Setup</div>
+                                </div>
+                                <div class="text-center p-4 bg-blue-50 rounded-lg">
+                                    <div class="text-3xl font-bold text-blue-600">Easy</div>
+                                    <div class="text-sm text-gray-600 mt-1">To Use</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur rounded-xl p-4 text-white">
+                            <p class="text-sm font-medium">✨ Trusted by professionals worldwide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Everything You Need</h2>
+                <p class="text-xl text-gray-600">Powerful features to manage your bookings efficiently</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 rounded-xl border border-gray-200 hover:border-indigo-500 hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center text-2xl mb-4">📅</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Easy Scheduling</h3>
+                    <p class="text-gray-600">Intuitive calendar interface to book and manage appointments with just a few clicks.</p>
+                </div>
+                <div class="p-6 rounded-xl border border-gray-200 hover:border-indigo-500 hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center text-2xl mb-4">🔒</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Secure & Private</h3>
+                    <p class="text-gray-600">Bank-level security with encrypted data storage to keep your information safe.</p>
+                </div>
+                <div class="p-6 rounded-xl border border-gray-200 hover:border-indigo-500 hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center text-2xl mb-4">📊</div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Track Bookings</h3>
+                    <p class="text-gray-600">Real-time dashboard to monitor all your bookings and manage your schedule effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 gradient-bg">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-white mb-4">Ready to Get Started?</h2>
+            <p class="text-xl text-white/90 mb-8">Join thousands of professionals managing their bookings efficiently</p>
+            <a href="/auth/register" class="bg-white text-indigo-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition shadow-lg inline-block">
+                Create Your Free Account
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">&copy; 2025 BookingPro. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
