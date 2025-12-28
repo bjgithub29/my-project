@@ -1,8 +1,8 @@
 -- Booking System Database Schema
 
 -- Create database
-CREATE DATABASE IF NOT EXISTS booking_db;
-USE booking_db;
+CREATE DATABASE IF NOT EXISTS ticket_system;
+USE ticket_system;
 
 -- Users table
 CREATE TABLE IF NOT EXISTS users (
@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
     username VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') DEFAULT 'user',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_email (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

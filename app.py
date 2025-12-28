@@ -3,6 +3,7 @@ from config.config import Config
 from utils.db import init_mysql
 from routes.auth_routes import auth_bp
 from routes.booking_routes import booking_bp
+from routes.admin_routes import admin_bp
 import os
 
 app = Flask(__name__)
@@ -14,6 +15,7 @@ mysql = init_mysql(app)
 # Register blueprints
 app.register_blueprint(auth_bp)
 app.register_blueprint(booking_bp)
+app.register_blueprint(admin_bp)
 
 @app.route('/')
 def home():

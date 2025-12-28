@@ -5,16 +5,16 @@ class User:
     def __init__(self, mysql):
         self.mysql = mysql
     
-    def create_user(self, username, email, password):
+    def create_user(self, username, email, password, role='user'):
         """Create a new user"""
         try:
             cursor = self.mysql.connection.cursor()
             hashed_password = generate_password_hash(password)
             query = """
-                INSERT INTO users (username, email, password, created_at)
-                VALUES (%s, %s, %s, %s)
+                INSERT INTO users (username, email, password, role, created_at)
+                VALUES (%s, %s, %s, %s, %s)
             """
-            cursor.execute(query, (username, email, hashed_password, datetime.now()))
+            cursor.execute(query, (username, email, hashed_password, role, datetime.now()))
             self.mysql.connection.commit()
             user_id = cursor.lastrowid
             cursor.close()
@@ -34,7 +34,7 @@ class User:
     def get_user_by_id(self, user_id):
         """Get user by ID"""
         cursor = self.mysql.connection.cursor(dictionary=True)
-        query = "SELECT id, username, email, created_at FROM users WHERE id = %s"
+        query = "SELECT id, username, email, role, created_at FROM users WHERE id = %s"
         cursor.execute(query, (user_id,))
         user = cursor.fetchone()
         cursor.close()

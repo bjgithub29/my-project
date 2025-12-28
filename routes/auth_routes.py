@@ -48,12 +48,14 @@ def register():
         session['user_id'] = user_id
         session['username'] = username
         session['email'] = email
+        session['role'] = 'user'
         return jsonify({
             'message': 'User registered successfully',
             'user': {
                 'id': user_id,
                 'username': username,
-                'email': email
+                'email': email,
+                'role': 'user'
             }
         }), 201
     else:
@@ -62,6 +64,7 @@ def register():
 @auth_bp.route('/api/login', methods=['POST'])
 def login():
     """API endpoint for user login"""
+    from flask import current_app
     data = request.get_json()
     
     if not data:
@@ -73,6 +76,23 @@ def login():
     if not all([email, password]):
         return jsonify({'error': 'Email and password are required'}), 400
     
+    # Check for admin credentials
+    if email == current_app.config['ADMIN_EMAIL'] and password == current_app.config['ADMIN_PASSWORD']:
+        session['user_id'] = 'admin'
+        session['username'] = 'Admin'
+        session['email'] = email
+        session['role'] = 'admin'
+        return jsonify({
+            'message': 'Login successful',
+            'user': {
+                'id': 'admin',
+                'username': 'Admin',
+                'email': email,
+                'role': 'admin'
+            },
+            'redirect': '/admin/dashboard'
+        }), 200
+    
     mysql = get_mysql()
     user_model = User(mysql)
     
@@ -82,13 +102,16 @@ def login():
         session['user_id'] = user['id']
         session['username'] = user['username']
         session['email'] = user['email']
+        session['role'] = user.get('role', 'user')
         return jsonify({
             'message': 'Login successful',
             'user': {
                 'id': user['id'],
                 'username': user['username'],
-                'email': user['email']
-            }
+                'email': user['email'],
+                'role': user.get('role', 'user')
+            },
+            'redirect': '/my-bookings'
         }), 200
     else:
         return jsonify({'error': 'Invalid email or password'}), 401

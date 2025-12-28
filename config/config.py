@@ -9,8 +9,12 @@ class Config:
     MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
     MYSQL_USER = os.getenv('MYSQL_USER', 'root')
     MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', '')
-    MYSQL_DATABASE = os.getenv('MYSQL_DB', 'booking_db')
+    MYSQL_DATABASE = os.getenv('MYSQL_DB', 'ticket_system')
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'jwt-secret-key-change-in-production')
+    
+    # Admin credentials
+    ADMIN_EMAIL = 'admin@gmail.com'
+    ADMIN_PASSWORD = 'Admin@123'
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=1)
     SESSION_PERMANENT = False
     SESSION_TYPE = "filesystem"

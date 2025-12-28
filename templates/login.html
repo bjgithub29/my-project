@@ -214,7 +214,12 @@
                     successDiv.textContent = data.message;
                     successDiv.style.display = 'block';
                     setTimeout(() => {
-                        window.location.href = '/';
+                        // Check if there's a redirect URL in the response
+                        if (data.redirect) {
+                            window.location.href = data.redirect;
+                        } else {
+                            window.location.href = '/';
+                        }
                     }, 1000);
                 } else {
                     errorDiv.textContent = data.error || 'Login failed';
